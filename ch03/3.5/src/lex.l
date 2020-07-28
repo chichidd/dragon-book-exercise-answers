@@ -20,11 +20,12 @@ number  {digit}+(\.{digit}+)?(E[+-]?{digit }+)?
 doubleq \"
 
 %%
-{ws} {/* no action and no return */}
+{ws} { replaceWithSingleBlanck();/* originally no action and no return, MY : 3.5.2  */}
 if   {return (IF); }
 while { return (WHILE); /* Exercise 3.5.1 - a) */ }
 then {return (THEN); }
 else {return (ELSE) ; }
+float { replaceWithDouble(); /* MY 3.5.3*/}
 {id} {yylval = (int) installID(); return (ID); }
 
 {doubleq}.*{doubleq} { yylval = (int) installString(); return (STRING); /* Exercise 3.5.1 - d) */}
@@ -51,3 +52,10 @@ int installString() {
 /* ... */
 }
 
+void replaceWithSingleBlanck(){
+  /* operate with yytext and yyleng? */
+}
+
+void replaceWithDouble(){
+  /* operate with yytext and yyleng? */
+}
