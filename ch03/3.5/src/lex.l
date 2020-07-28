@@ -29,8 +29,8 @@ else {return (ELSE) ; }
 
 {doubleq}.*{doubleq} { yylval = (int) installString(); return (STRING); /* Exercise 3.5.1 - d) */}
 {number} {yylval = (int) installNum(); return (NUMBER); }
-/* MY: 3.5.1-d */
-{string} { yylval = (int) installString(); return (STRING);}
+
+{string} { yylval = (int) installString(); return (STRING); /* MY: 3.5.1-d */}
 "<" {yylval = LT; return (RELOP); }
 "<=" {yylval = LE; return (RELOP);}
 "==" {yylval = EQ; return (RELOP); /* Exercise 3.5.1 - b) */ }
