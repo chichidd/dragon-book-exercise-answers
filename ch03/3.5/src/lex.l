@@ -14,6 +14,8 @@ digit   [0-9]
 /* Exercise 3.5.1 - c) */
 id      {letter}({letter}|{digit}|_)*
 
+/* MY: 3.5.1-d*/
+string  "([^"\\]|[\\\\]|[\\"])*"
 number  {digit}+(\.{digit}+)?(E[+-]?{digit }+)?
 doubleq \"
 
@@ -24,8 +26,11 @@ while { return (WHILE); /* Exercise 3.5.1 - a) */ }
 then {return (THEN); }
 else {return (ELSE) ; }
 {id} {yylval = (int) installID(); return (ID); }
+
 {doubleq}.*{doubleq} { yylval = (int) installString(); return (STRING); /* Exercise 3.5.1 - d) */}
 {number} {yylval = (int) installNum(); return (NUMBER); }
+/* MY: 3.5.1-d*/
+{string} { yylval = (int) installString(); return (STRING);}
 "<" {yylval = LT; return (RELOP); }
 "<=" {yylval = LE; return (RELOP);}
 "==" {yylval = EQ; return (RELOP); /* Exercise 3.5.1 - b) */ }
