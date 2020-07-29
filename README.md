@@ -11,6 +11,6 @@
 - There are some key-point.md file, key points and difficult points are summarized in them.
 - As we know only teacher can buy the answer book, so I don't know the standard answer, but I tried my best to keep the correctness, if you found any bug, please [tell me](https://github.com/fool2fish/dragon-book-practice-answer/issues/new), thanks.
 
-### License
+### Website
 
-It is still under consideration. Anyone know which is suitable?
+https://suif.stanford.edu/dragonbook/
