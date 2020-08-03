@@ -1,0 +1,76 @@
+
+<!-- saved from url=(0056)http://kilby.stanford.edu/~rvg/154/handouts/useless.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><h2>Useless variables in context-free grammars</h2>
+
+A variable X in a context-free grammar is called <i>useless</i> if it
+doesn't occur in any derivation of a word from that grammar.
+<br>
+Here is an easy algorithm to eliminate useless variable from CFGs.
+
+<hr>
+Call a variable <i>generating</i> if it derives a string of terminals.
+Note that the language accepted by a context-free grammar is non-empty
+if and only if the start symbol is generating.
+Here is an algorithm to find the generating variables in a CFG:
+<ol>
+<li> Mark a variable X as "generating" if it has a production X -&gt; w
+     where w is a string of only terminals and/or variables previously
+     marked "generating".
+</li><li> Repeat the step above until no further variables get marked "generating".
+</li></ol>
+All variables not marked "generating" are non-generating (by a simple
+     induction on the length of derivations).
+
+<hr>
+Call a variable <i>reachable</i> if the start symbol derives a string
+containing that variable.
+Here is an algorithm to find the reachable variables in a CFG:
+<ol>
+<li> Mark the start variable as "reachable".
+</li><li> Mark a variable Y as "reachable" if there is a production X -&gt; w
+     where X is a variable previously marked as "reachable" and w is a
+     string containing Y.
+</li><li> Repeat the step above until no further variables get marked "reachable".
+</li></ol>
+All variables not marked "reachable" are non-reachable (by a simple
+     induction on the length of derivations).
+
+<hr>
+
+Observe that a CFG has no useless variables if and only if all its
+variables are reachable and generating. <br>
+Therefore it is possible to eliminate useless variables from a grammar
+as follows:
+<ol>
+<li> Find the non-generating variables and delete them, along with all
+     productions involving non-generating variables.
+</li><li> Find the non-reachable variables in the resulting grammar and
+     delete them, along with all productions involving non-reachable variables.
+</li></ol>
+Note that step 1 does not make other variables non-generating, and
+step 2 does not make other variables non-reachable or non-generating.
+Therefore the end result is a grammar in which all variables are
+reachable and generating, and hence useful.
+
+<hr>
+
+Reversing step 1 and 2 in the above algorithm would not work, as
+eliminating non-generating variables and their productions may make
+other variables unreachable. Example:
+<p align="center"> S -&gt; AB | a	<br>
+		 A -&gt; aA	<br>
+		 B -&gt; b
+</p>
+Here A is non-generating, and after deleting A (along with the
+production S -&gt; AB) the variable B becomes unreachable. So it must be
+a useless variable.
+However, if we would first test for reachability, all variables
+would be reachable, and subsequently eliminating non-generating
+variables would leave us with B.
+<hr>
+<table border="0" width="100%"><tbody><tr><td>
+<a href="http://kilby.stanford.edu/~rvg/">Rob van Glabbeek</a>
+</td><td align="right">
+<a href="mailto:rvg@cs.stanford.edu">rvg@cs.stanford.edu</a>
+</td></tr></tbody></table>
+</body></html>
